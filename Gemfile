@@ -73,3 +73,5 @@ gem "ruby", "~> 0.1.0"
 gem "devise", "~> 4.9"
 
 gem "faker", "~> 3.4"
+
+gem 'guard-rspec', '~> 4.7', '>= 4.7.3'

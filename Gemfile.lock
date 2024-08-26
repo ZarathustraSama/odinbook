@@ -107,6 +107,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
     drb (2.2.1)
     erubi (1.13.0)
     faker (3.4.2)
@@ -129,6 +130,11 @@ GEM
       pry (>= 0.13.0)
       shellany (~> 0.0)
       thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-rspec (4.7.3)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -250,6 +256,19 @@ GEM
       railties (>= 5.2)
     rexml (3.3.5)
       strscan
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.1)
     ruby (0.1.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.23.0)
@@ -309,6 +328,7 @@ DEPENDENCIES
   devise (~> 4.9)
   faker (~> 3.4)
   guard
+  guard-rspec (~> 4.7, >= 4.7.3)
   importmap-rails
   jbuilder
   pg (~> 1.1)
