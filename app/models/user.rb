@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2, :twitter2]
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :posts
   has_many :likes
@@ -14,4 +14,19 @@ class User < ApplicationRecord
 
   has_many :following_users, foreign_key: :followee_id, class_name: "Follow"
   has_many :followers, through: :following_users
+
+  # As per documentation here: https://github.com/zquestz/omniauth-google-oauth2?tab=readme-ov-file#devise
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(email: data['email']).first
+
+    unless user
+        user = User.create(name: data['name'],
+           email: data['email'],
+           password: Devise.friendly_token[0,20]
+        )
+    end
+    user
+  end
 end
