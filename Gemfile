@@ -72,6 +72,16 @@ gem "ruby", "~> 0.1.0"
 
 gem "devise", "~> 4.9"
 
+gem 'omniauth-facebook'
+
+gem 'omniauth-github'
+
+gem 'omniauth-google_oauth2'
+
+gem 'omniauth-twitter2'
+
+gem 'omniauth-rails_csrf_protection'
+
 gem "faker", "~> 3.4"
 
 gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
