@@ -54,6 +54,7 @@ group :development do
   gem "web-console"
 
   gem 'guard'
+  gem 'guard-rspec', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -68,16 +69,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "ruby", "~> 0.1.0"
-
-gem "devise", "~> 4.9"
-
-gem 'omniauth-google_oauth2'
-
-gem 'omniauth-rails_csrf_protection'
-
 gem "figaro"
-
 gem "faker", "~> 3.4"
 
-gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
