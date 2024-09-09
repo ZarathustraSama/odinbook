@@ -7,3 +7,27 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'faker'
+
+Post.delete_all
+# User.delete_all
+
+# Only for the first time, then comment
+# 10.times do
+#   name = Faker::Name.first_name
+#   email = "#{name}@provider.com"
+#   User.create!(
+#     name: name,
+#     email: email,
+#     password: Devise.friendly_token[0,20]
+#   )
+# end
+
+# User.all.each do |user|
+#  user.post.create!()
+# end
+
+# User.all.each do |user|
+#   create comments on non-belonging posts
+# end
