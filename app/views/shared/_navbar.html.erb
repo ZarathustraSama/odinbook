@@ -2,6 +2,7 @@
   <ul>
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to current_user.name, user_path(current_user.id) %></li>
+    <li><%= link_to "Users", users_path %></li>
     <li><%= link_to "Follows", follows_path %></li>
     <li class="log"><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %></li>
   </ul>
