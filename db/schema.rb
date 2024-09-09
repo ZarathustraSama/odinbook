@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_03_113912) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_06_075859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_113912) do
     t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "images", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_113912) do
     t.bigint "postable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
   end
 
@@ -67,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_113912) do
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.text "photo_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
