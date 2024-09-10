@@ -2,8 +2,10 @@ class FollowsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @follows = Follow.where("follower_id = ? AND followee_id = ?", current_user.id, params[:id])
-    @followees = Follow.where("follower_id = ? AND followee_id = ?", params[:id], current_user.id)
+    f = Follow.where(followee_id: current_user.id)
+    @followers = f.where(status: 'ok')
+    @pending = f.where(status: 'pending')
+    @followees = Follow.where(follower_id: current_user.id)
   end
 
   def create
@@ -18,20 +20,23 @@ class FollowsController < ApplicationController
       follow.save!
     end
 
-    redirect_to user_path(follow_params[:id])
+    redirect_back_or_to(root_path)
   end
 
   def update
-    follow = Follow.where("follower_id = ? AND followee_id = ?", current_user.id, follow_params[:id]).first
-    follow.update(status: 'ok') if follow.any?
-
-    redirect_to follows_path
+    follow = Follow.find_by("followee_id = ? AND follower_id = ?", current_user.id, follow_params[:id])
+    if follow.update(status: 'ok')
+      redirect_back_or_to(root_path)
+    else
+      flash[:alert] = 'Something went wrong'
+      render root_path, status: :unprocessable_entity
+    end
   end
 
   def destroy
     follow = Follow.where("follower_id = ? AND followee_id = ?", current_user.id, follow_params[:id]).first
     if follow.destroy
-      redirect_to user_path(follow_params[:id])
+      redirect_back_or_to(root_path)
     else
       flash[:alert] = 'Something went wrong'
       render root_path, status: :unprocessable_entity
