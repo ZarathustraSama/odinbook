@@ -1,0 +1,41 @@
+<%= render "shared/navbar" %>
+
+<% if @pending %>
+  <h1>Here are all of your pending requests</h1>
+  <ul>
+    <% @pending.each do |p| %>
+      <li> 
+        <%= link_to p.follower.name, user_path(p.follower.id) %>
+
+        <%= form_with model: p.follower, url: follow_path(p.follower.id), method: :patch  do |form| %>
+          <%= form.hidden_field :id, :value => p.follower.id %>
+          <%= form.submit "Accept request" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<h1>Here are your followers</h1>
+<% if @followers %>
+
+  <ul>
+    <% @followers.each do |f| %>
+      <li>
+        <%= link_to f.follower.name, user_path(f.follower.id) %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<% if @followees %>
+  <ul>
+    <% @followees.each do |f| %>
+      <% if f.status == 'ok' %>
+        <li>
+          <%= link_to f.followee.name, user_path(f.followee.id) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
