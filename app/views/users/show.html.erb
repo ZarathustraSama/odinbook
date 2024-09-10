@@ -1,2 +1,38 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render "shared/navbar" %>
+
+<h1><%= @user.name %></h1>
+<% if current_user.id != @user.id %>
+
+  <% follow = Follow.where("follower_id = ? AND followee_id = ?", current_user.id, params[:id]) %>
+
+  <% if !follow.any? %>
+
+    <%= form_with model: @user, url: follows_path, method: :post  do |form| %>
+      <%= form.hidden_field :id, :value => @user.id %>
+      <%= form.submit "Follow" %>
+    <% end %>
+    
+  <% elsif follow.first.status == 'pending' %>
+
+    <%= form_with model: @user, url: follow_path, method: :delete  do |form| %>
+      <%= form.hidden_field :id, :value => @user.id %>
+      <%= form.submit "Cancel pending request" %>
+    <% end %>
+
+  <% else %>
+
+    <%= form_with model: @user, url: follows_path, method: :delete  do |form| %>
+      <%= form.hidden_field :id, :value => @user.id %>
+      <%= form.submit "Unfollow" %>
+    <% end %>
+
+  <% end %>
+<% end %>
+
+
+<% if flash[:alert] %>
+  <br />
+  <br />
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
