@@ -24,9 +24,9 @@ Post.delete_all
 #   )
 # end
 
-# User.all.each do |user|
-#  user.post.create!()
-# end
+User.all.each do |user|
+  user.posts.create!(body: 'Lorem Ipsum...')
+end
 
 # User.all.each do |user|
 #   create comments on non-belonging posts
