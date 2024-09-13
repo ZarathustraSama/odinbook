@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
   resources :follows, only: [:index, :create, :update, :destroy]
-  resources :posts, only: [:index, :new, :show]
+  resources :posts, only: [:index, :new, :create, :show]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
 
