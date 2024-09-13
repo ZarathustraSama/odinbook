@@ -1,0 +1,17 @@
+.post {
+  padding: 2px;
+  border: 1px solid black;
+  max-width: 50%;
+  height: auto;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 8px;
+}
