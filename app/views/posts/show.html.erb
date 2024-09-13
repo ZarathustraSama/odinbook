@@ -29,3 +29,25 @@
     <% end %>
   <% end %>
 </div>
+<br>
+<%= form_with model: [@post, @comment] do |f| %>
+  <%= f.hidden_field :id, :value => @post.id %>
+  <%= f.text_area :content, size: "40x2" %>
+  <%= f.submit "Comment" %>
+<% end %>
+
+<% if @comments.any? %>
+  <br>
+  <br>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <div class="comment">
+          <%= comment.user.name %>
+          <br>
+          <%= comment.content %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
