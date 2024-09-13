@@ -1,6 +1,6 @@
 <%= render "shared/navbar" %>
 
-<% if @pending %>
+<% if @pending.any? %>
   <h1>Here are all of your pending requests</h1>
   <ul>
     <% @pending.each do |p| %>
@@ -27,6 +27,8 @@
   </ul>
 
 <% end %>
+
+<h1>Here are the one who follows you</h1>
 
 <% if @followees %>
   <ul>
