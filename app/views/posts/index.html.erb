@@ -1,2 +1,24 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<%= render "shared/navbar" %>
+
+<h1>Home</h1>
+<%= link_to 'New Post', new_post_path %>
+<div>
+  <% if @posts %>
+    <ul>
+      <% @posts.each do |post| %>
+        <li>
+          <%= link_to post_path(post.id) do %>
+            <div class="post">
+              <% if post.image_url %>
+                <img src=<%=post.image_url%>>
+                <br>
+              <% end %>
+              <%= post.body %>
+              <br>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
