@@ -1,6 +1,14 @@
 <%= render "shared/navbar" %>
 
 <h1><%= @user.name %></h1>
+
+<% if flash[:alert] %>
+  <br />
+  <br />
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+
 <% if current_user.id != @user.id %>
 
   <% follow = Follow.where("follower_id = ? AND followee_id = ?", current_user.id, params[:id]) %>
@@ -21,7 +29,7 @@
 
   <% else %>
 
-    <%= form_with model: @user, url: follows_path, method: :delete  do |form| %>
+    <%= form_with model: @user, url: follow_path, method: :delete  do |form| %>
       <%= form.hidden_field :id, :value => @user.id %>
       <%= form.submit "Unfollow" %>
     <% end %>
@@ -29,12 +37,14 @@
   <% end %>
 
 <% else %>
-<%= link_to 'New Post', new_post_path %>
+  <%= link_to 'New Post', new_post_path %>
+<% end %>
 <br>
-  <% if @posts %>
-    <ul>
-      <% @posts.each do |post| %>
-        <li>
+<% if @posts %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to post_path(post.id) do %>
           <div class="post">
             <% if post.image_url %>
               <img src=<%=post.image_url%>>
@@ -44,17 +54,8 @@
             <br>
             
           </div>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
-
-
-
-<% if flash[:alert] %>
-  <br />
-  <br />
-  <div class="alert"><%= flash[:alert] %></div>
-<% end %>
-
