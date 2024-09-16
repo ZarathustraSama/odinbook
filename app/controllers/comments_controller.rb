@@ -2,9 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post = Post.find(comment_params[:id])
-    comment = post.comments.build(comment_params)
-    comment.user_id = current_user.id
+    user = User.find(current_user.id)
+    comment = user.comments.build(comment_params)
     if comment.save!
       redirect_back_or_to(root_path)
     else
@@ -16,6 +15,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:id, :content)
+    params.require(:comment).permit(:post_id, :content)
   end
 end
