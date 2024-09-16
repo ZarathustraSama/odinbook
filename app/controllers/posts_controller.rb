@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    allowed_users = Follow.where(follower_id: current_user.id).map(&:followee_id) << current_user.id
+    allowed_users = Follow.where(follower_id: current_user.id, status: 'ok').map(&:followee_id) << current_user.id
     @posts = Post.where(user_id: allowed_users).reverse_order
   end
 
