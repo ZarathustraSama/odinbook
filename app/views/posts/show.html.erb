@@ -31,7 +31,7 @@
 </div>
 <br>
 <%= form_with model: [@post, @comment] do |f| %>
-  <%= f.hidden_field :id, :value => @post.id %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
   <%= f.text_area :content, size: "40x2" %>
   <%= f.submit "Comment" %>
 <% end %>
@@ -43,10 +43,11 @@
     <% @comments.each do |comment| %>
       <li>
         <div class="comment">
-          <%= comment.user.name %>
+          <div class="commentInfo"><%= comment.user.name %>, posted at <%= comment.created_at %></div>
           <br>
           <%= comment.content %>
         </div>
+        <br>
       </li>
     <% end %>
   </ul>
