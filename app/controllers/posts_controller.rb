@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    allowed_users = Follow.where(follower_id: current_user.id).map(&:followee_id) << current_user.id
+    @posts = Post.where(user_id: allowed_users).reverse_order
   end
 
   def new
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = Comment.where(post_id: @post.id)
+    @likes = Like.where(post_id: params[:id]).count
   end
 
   private
