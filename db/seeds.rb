@@ -14,7 +14,6 @@ Post.delete_all
 Comment.delete_all
 # User.delete_all
 
-# Only for the first time, then comment
 # 10.times do
 #   name = Faker::Name.first_name
 #   email = "#{name}@provider.com"
