@@ -11,6 +11,7 @@
 require 'faker'
 
 Post.delete_all
+Comment.delete_all
 # User.delete_all
 
 # Only for the first time, then comment
@@ -28,6 +29,8 @@ User.all.each do |user|
   user.posts.create!(body: 'Lorem Ipsum...')
 end
 
-# User.all.each do |user|
-#   create comments on non-belonging posts
-# end
+User.all.each do |user|
+  Post.all.each do |post|
+    user.comments.create!(post_id: post.id, content: 'One of us')
+  end
+end
