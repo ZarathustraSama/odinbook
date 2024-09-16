@@ -7,16 +7,16 @@
     <ul>
       <% @posts.each do |post| %>
         <li>
-          <%= link_to post_path(post.id) do %>
-            <div class="post">
-              <% if post.image_url %>
-                <img src=<%=post.image_url%>>
+          <div class="post">
+            <%= link_to post_path(post.id) do %>
+                <% if post.image_url %>
+                  <img src=<%=post.image_url%>>
+                  <br>
+                <% end %>
+                <%= post.body %>
                 <br>
-              <% end %>
-              <%= post.body %>
-              <br>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </li>
       <% end %>
     </ul>
