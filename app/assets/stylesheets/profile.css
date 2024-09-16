@@ -1,0 +1,10 @@
+.profileImage {
+  max-width: 100px;
+  margin-top: 1em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
