@@ -8,21 +8,22 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+=begin
 require 'faker'
 
 Post.delete_all
 Comment.delete_all
-# User.delete_all
+User.delete_all
 
-# 10.times do
-#   name = Faker::Name.first_name
-#   email = "#{name}@provider.com"
-#   User.create!(
-#     name: name,
-#     email: email,
-#     password: Devise.friendly_token[0,20]
-#   )
-# end
+10.times do
+  name = Faker::Name.first_name
+  email = "#{name}@provider.com"
+  User.create!(
+    name: name,
+    email: email,
+    password: Devise.friendly_token[0,20]
+  )
+end
 
 User.all.each do |user|
   user.posts.create!(body: 'Lorem Ipsum...')
@@ -33,3 +34,4 @@ User.all.each do |user|
     user.comments.create!(post_id: post.id, content: 'One of us')
   end
 end
+=end
