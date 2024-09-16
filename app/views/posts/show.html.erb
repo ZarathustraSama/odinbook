@@ -28,6 +28,7 @@
       <%= form.submit "Like" %>
     <% end %>
   <% end %>
+  <%= @likes %>
 </div>
 <br>
 <%= form_with model: [@post, @comment] do |f| %>
