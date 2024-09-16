@@ -1,5 +1,11 @@
 <%= render "shared/navbar" %>
 
+<% if @user.photo_url %>
+  <div class="profileImage">
+    <img src=<%=@user.photo_url%> alt="profile-image">
+  </div>
+<% end %>
+
 <h1><%= @user.name %></h1>
 
 <% if flash[:alert] %>
