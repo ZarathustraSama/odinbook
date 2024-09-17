@@ -8,9 +8,11 @@
 <% end %>
 
 <div class="post">
-  <% if @post.image_url %>
+  <% if !@post.image_url.empty? %>
     <img src=<%= @post.image_url%>>
     <br>
+  <% elsif @post.image.attached? %>
+    <img src=<%=url_for(@post.image)%>>
   <% end %>
   <%= @post.body %>
   <br>

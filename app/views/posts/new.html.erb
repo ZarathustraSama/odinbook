@@ -3,5 +3,7 @@
   <%= f.text_field :image_url, placeholder: "Image URL (Optional)" %>
   <br>
   <%= f.text_area :body, size: "50x10" %>
+  <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
+  <br>
   <%= f.submit "Post" %>
 <% end %>

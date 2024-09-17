@@ -1,9 +1,26 @@
 <%= render "shared/navbar" %>
 
-<% if @user.photo_url %>
+<% if @user.photo_url && !@user.provider.nil? %>
   <div class="profileImage">
     <img src=<%=@user.photo_url%> alt="profile-image">
   </div>
+<% elsif !@user.photo.attached? %>
+  <br>
+  <br>
+  <%= form_with model: @user do |form| %>
+    <%= form.file_field :photo, accept: 'image/png,image/jpeg' %>
+    <%= form.submit "Upload a profile image" %>
+  <% end %>
+<% else %>
+  <br>
+  <br>
+  <div class="profileImage">
+    <img src=<%=url_for(@user.photo)%>>
+  </div>
+  <%= form_with model: @user do |form| %>
+    <%= form.file_field :photo, accept: 'image/png,image/jpeg' %>
+    <%= form.submit "Change profile image" %>
+  <% end %>
 <% end %>
 
 <h1><%= @user.name %></h1>
@@ -52,8 +69,11 @@
       <li>
         <%= link_to post_path(post.id) do %>
           <div class="post">
-            <% if post.image_url %>
+            <% if !post.image_url.empty? %>
               <img src=<%=post.image_url%>>
+              <br>
+            <% elsif post.image.attached? %>
+              <img src=<%=url_for(post.image)%>>
               <br>
             <% end %>
             <%= post.body %>
