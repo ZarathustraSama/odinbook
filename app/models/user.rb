@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: "Follow", dependent: :destroy
   has_many :followers, through: :following_users
 
+  has_one_attached :photo
+
   validates_presence_of(:name)
 
   # As per documentation here: https://github.com/zquestz/omniauth-google-oauth2?tab=readme-ov-file#devise
