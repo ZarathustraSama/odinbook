@@ -66,11 +66,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_073824) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.string "body"
+    t.text "image_url"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.text "image_url"
-    t.string "body"
   end
 
   create_table "users", force: :cascade do |t|
