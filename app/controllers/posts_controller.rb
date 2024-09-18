@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-    if @user.posts.create(post_params)
+    if @user.posts.create!(post_params)
       redirect_to @user
     else
       flash[:alert] = 'Something went wrong'
